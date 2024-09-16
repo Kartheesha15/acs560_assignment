@@ -9,6 +9,7 @@ public class Player {
 	private int runs;
 	private double average;
 	private double strikeRate;
+
 	public String getName() {
 		return name;
 	}

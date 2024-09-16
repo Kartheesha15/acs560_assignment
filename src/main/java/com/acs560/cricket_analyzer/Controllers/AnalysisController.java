@@ -1,26 +1,83 @@
 package com.acs560.cricket_analyzer.Controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.acs560.cricket_analyzer.Services.AnalysisServices;
+
+import lombok.NoArgsConstructor;
+
+@RestController()
+@RequestMapping("/api/v1/billsAnalysis")
+@NoArgsConstructor
+public class AnalysisController {
+	
+	@Autowired
+	private AnalysisServices analysisServices;
+	
+	public AnalysisController(AnalysisServices analysisServices) {
+		this.analysisServices = analysisServices;
+	}
+
+	@GetMapping("/average/{team}")
+	public double getAverageRuns(@PathVariable String team) {
+		return analysisServices.calculateAverageRuns(team );
+	}
+	
+	@GetMapping("/average/{team}")
+	public double getAverageStrikeRate(@PathVariable String team) {
+		return analysisServices.calculateAverageStrikeRate(team);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.acs560.cricket_analyzer.Services.AnalysisServices;
 import com.acs560.cricket_analyzer.model.Player;
 
+import lombok.NoArgsConstructor;
+@RestController
+@RequestMapping("/analysis")
+@NoArgsConstructor
 public class AnalysisController{
-	@Autowired
+
 	public AnalysisServices analysisServices;
 
     @GetMapping("/analysis/average-runs")
-    public double getAverageRuns() {
-        return analysisServices.getAverageRuns();
+    public double getAverageRuns(String name) {
+        return analysisServices.getAverageRuns(name);
     }
 
     @GetMapping("/analysis/average-strike-rate")
-    public double getAverageStrikeRate() {
-        return analysisServices.getAverageStrikeRate();
+    public double getAverageStrikeRate(String name) {
+        return analysisServices.getAverageStrikeRate(name);
     }
 
     @GetMapping("/analysis/highest-average")
@@ -28,8 +85,8 @@ public class AnalysisController{
         return analysisServices.getHighestAverage();
     }
     @GetMapping("/analysis/highest-strike-rate")
-    public double getHighestStrikeRate() {
-        return analysisServices.getHighestStrikeRate();
+    public double getHighestStrikeRate(String team) {
+        return analysisServices.getHighestStrikeRate(team);
     }
 
     @GetMapping("/analysis/top-scorers/{n}")
@@ -53,7 +110,7 @@ public class AnalysisController{
     }
 
 }
-
+*/
 
 
 /*import java.util.List;

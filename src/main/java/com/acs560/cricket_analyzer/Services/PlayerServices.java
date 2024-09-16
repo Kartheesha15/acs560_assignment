@@ -1,16 +1,22 @@
 package com.acs560.cricket_analyzer.Services;
-
+import com.acs560.cricket_analyzer.model.Player ;
 import java.util.List;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-
-import com.acs560.cricket_analyzer.model.Player;
 
 @Service
 public interface PlayerServices {
-	List<Player> getAllPlayers();
-    Player getPlayerByName(String name);
-    List<Player> getPlayersByTeam(String team);
+	List<Player> getPlayers(String name, String team);
+	List<Player> getPlayers();
+	List<Player> getPlayers(String name);
+//	List<Player> getPlayers(String team, int runs);
+	
+	
+	void add(Player bill);
+	void delete(Player bill);
+	void update(Player bill);
+	
+
+	
 
 }
