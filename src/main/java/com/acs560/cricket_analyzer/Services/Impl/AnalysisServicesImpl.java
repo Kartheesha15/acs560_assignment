@@ -10,7 +10,7 @@ import com.acs560.cricket_analyzer.model.Player;
 
 
 @Service
-public abstract class AnalysisServicesImpl implements AnalysisServices {
+public class AnalysisServicesImpl implements AnalysisServices {
 
 	@Override
 	public double calculateAverageRuns(String team) {

@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface PlayerServices {
-	List<Player> getPlayers(String name, String team);
+	List<Player> getPlayers(String team);
 	List<Player> getPlayers();
-	List<Player> getPlayers(String name);
+	List<Player> getPlayers1(String name);
 //	List<Player> getPlayers(String team, int runs);
 	
 	

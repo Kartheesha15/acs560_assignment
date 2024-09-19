@@ -11,7 +11,7 @@ import com.acs560.cricket_analyzer.Services.AnalysisServices;
 import lombok.NoArgsConstructor;
 
 @RestController()
-@RequestMapping("/api/v1/billsAnalysis")
+@RequestMapping("/api/v1/analysis")
 @NoArgsConstructor
 public class AnalysisController {
 	
@@ -22,12 +22,12 @@ public class AnalysisController {
 		this.analysisServices = analysisServices;
 	}
 
-	@GetMapping("/average/{team}")
+	@GetMapping("/average/runs/{team}")
 	public double getAverageRuns(@PathVariable String team) {
 		return analysisServices.calculateAverageRuns(team );
 	}
 	
-	@GetMapping("/average/{team}")
+	@GetMapping("/average/strikeRate/{team}")
 	public double getAverageStrikeRate(@PathVariable String team) {
 		return analysisServices.calculateAverageStrikeRate(team);
 	}

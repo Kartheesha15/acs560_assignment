@@ -11,7 +11,7 @@ import com.acs560.cricket_analyzer.Repository.PlayerRepository;
 import com.acs560.cricket_analyzer.Services.PlayerServices;
 import com.acs560.cricket_analyzer.model.Player;
 @Service
-public abstract class PlayerServiceImpl implements PlayerServices {
+public class PlayerServiceImpl implements PlayerServices {
 
 
 	@Override

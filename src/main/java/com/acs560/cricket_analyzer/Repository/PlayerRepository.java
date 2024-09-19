@@ -19,6 +19,7 @@ import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
 import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
+import com.opencsv.exceptions.CsvValidationException;
 
 public class PlayerRepository {
 
@@ -41,7 +42,8 @@ public class PlayerRepository {
         CSVReader reader;
        // List<Player> players = new ArrayList<>();
         try {
-            reader = new CSVReader(new FileReader("batting_stats.csv"));
+            reader = new CSVReader(new FileReader("batting stats.csv"));
+            reader.readNext();
             ColumnPositionMappingStrategy<Player> beanStrategy = new ColumnPositionMappingStrategy<Player>();
             beanStrategy.setType(Player.class);
             beanStrategy.setColumnMapping(new String[]{"name", "team", "matches", "innings", "notouts", "runs", "average", "strikeRate"});
@@ -52,7 +54,13 @@ public class PlayerRepository {
             players = csvToBean.parse();
         } catch (FileNotFoundException e) {
            players = new ArrayList<>();
-        }
+        } catch (IOException e) {
+        	 players = new ArrayList<>();
+			e.printStackTrace();
+		} catch (CsvValidationException e) {
+			 players = new ArrayList<>();
+			e.printStackTrace();
+		}
         return players;
     }
 
@@ -116,7 +124,7 @@ private static StatefulBeanToCsv<Player> createWriter(FileWriter writer) {
 private static boolean savePlayer(Player player) {
 	boolean isSaved = false;
 	
-	try (FileWriter writer = new FileWriter("batting_stats.csv", true)) {
+	try (FileWriter writer = new FileWriter("batting stats.csv", true)) {
 	    StatefulBeanToCsv<Player> beanWriter = createWriter(writer);
 	    
 	    beanWriter.write(player);
@@ -137,7 +145,7 @@ private static boolean savePlayers() {
 	
 	boolean isSaved = false;
 	
-	try (FileWriter writer = new FileWriter("data.csv")) {
+	try (FileWriter writer = new FileWriter("batting stats.csv")) {
 	    StatefulBeanToCsv<Player> beanWriter = createWriter(writer);
 	    
 	    beanWriter.write(players);
